@@ -1,3 +1,5 @@
+(*Exercicio 4*)
+(*Verifica o tipo de triangulo formado pelos valores de a,b,c*)
 let tri a b c = (
   if (a < (b + c) || b > (a+c)) || c > (a+b) then
     0
