@@ -19,3 +19,7 @@ g 0;;
 
 (*Retorna o valor de n*)
 n;;
+
+let rec loop x = loop x;;
+
+(fun x -> 5) (loop 3);;
