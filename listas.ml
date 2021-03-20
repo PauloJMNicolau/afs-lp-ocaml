@@ -1,4 +1,4 @@
-(*Exercicio 8*)
+(*Exercicio 8,9,10*)
 
 (*Conta os elementos da lista*)
 let rec len lista = (
