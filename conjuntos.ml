@@ -52,11 +52,25 @@ let rec diff lista1 lista2 =(
 
 (diff [7;3;9] [2;1;9]);;   (*Retorna [7;3]*)
 
-let rec power lista = (
+let rec calcPower lista x =(
   match lista with
   | [] -> [lista]
-  | h::t -> [h]::(power t)
+  | h::t -> [h]::(
+      diff lista [h]
+    )::(calcPower lista (List.hd (List.tl lista)))
 );;
+let rec power lista = (
+  lista::(match lista with
+    | [] -> []
+    | h::t -> [h]::(
+        match t with
+        | [] -> []
+        | hd::tl -> h::[(power tl)]
+      )::(power (List.tl lista))
+  )
+);;
+
+
 
 (power [1;2]);;
 (power [1;2;3]);;
