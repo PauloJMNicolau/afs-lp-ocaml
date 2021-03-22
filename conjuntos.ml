@@ -53,18 +53,27 @@ let rec diff lista1 lista2 =(
 (diff [7;3;9] [2;1;9]);;   (*Retorna [7;3]*)
 
 (* Não funciona  para o que é pedido *)
-let rec power lista = (
-  lista::(match lista with
-    | [] -> []
-    | h::t -> [h]::(
-        match t with
-        | [] -> []
-        | hd::tl -> h::[(power tl)]
-      )::(power (List.tl lista))
-  )
+(*Percorre ciclo interno *)
+let rec powerInterno lista x = (
+  match lista with
+  | [] -> []
+  | h::t -> (x;h)::(powerInterno t (x;h))
 );;
 
+(* Calcula a potencia do conjunto *)
+let rec powerExterno lista = (
+  match lista with
+  | [] -> [lista]
+  | h::t -> [h]::[(powerInterno t h
+  )]@powerExterno (List.tl lista)
+);;
 
+let power lista =(
+  match lista with
+  | [] -> []
+  | h::t -> lista::powerExterno lista
+);;
 
 (power [1;2]);;
 (power [1;2;3]);;
+(power [1;2;3;4]);;
